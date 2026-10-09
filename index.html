@@ -76,7 +76,8 @@
     img, svg { display: block; max-width: 100%; }
     .wrap { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
     .grid > *, .hero > *, .feature > *, .due-item > *, .chapter > *,
-    .check-row > *, .time-row > *, .field-grid > *, .modal-head > * { min-width: 0; }
+    .check-row > *, .time-row > *, .field-grid > *, .modal-head > *,
+    .help-row > *, .facts > * { min-width: 0; }
     .skip-link {
       position: absolute;
       left: 16px;
@@ -220,7 +221,7 @@
       transform: rotate(45deg);
     }
     h1, h2, h3, h4, p { margin-top: 0; }
-    h2, h3, h4 { line-height: 1.25; }
+    h2, h3, h4 { line-height: 1.25; overflow-wrap: anywhere; }
     h2 { font-size: clamp(24px, 2.5vw, 36px); font-weight: 800; }
     h3 { font-size: 20px; font-weight: 700; }
     h4 { font-size: 17px; font-weight: 700; }
@@ -234,7 +235,7 @@
       letter-spacing: -0.028em;
       font-family: var(--cp-font);
       font-weight: 800;
-      overflow-wrap: normal;
+      overflow-wrap: anywhere;
     }
     h1 span, h1 em { display: block; }
     h1 em { color: var(--cp-success); font-style: normal; }
@@ -284,6 +285,7 @@
       line-height: 1.4;
       text-align: center;
       white-space: normal;
+      overflow-wrap: anywhere;
     }
     .btn.primary {
       border-color: transparent;
@@ -341,7 +343,11 @@
       line-height: 1.15;
       letter-spacing: -0.025em;
     }
-    .card, .feature { padding: 24px; }
+    .card, .feature {
+      padding: 24px;
+      overflow: hidden;
+      overflow-wrap: anywhere;
+    }
     .feature.highlight {
       display: grid;
       grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
@@ -424,7 +430,11 @@
       border-color: var(--cp-success);
     }
     .event-card { display: none; }
-    .event-card.show { display: block; }
+    .event-card.show { display: flex; flex-direction: column; }
+    .event-card h3 { margin-bottom: 12px; }
+    .event-card .muted { margin-bottom: 16px; }
+    .event-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+    .event-card .btn { min-height: 40px; padding: 9px 14px; font-size: 13px; }
     .faq details {
       padding: 16px;
       border: 1px solid var(--cp-border);
@@ -581,7 +591,7 @@
             <a class="btn primary" href="https://powerplatformconf.com/register" target="_blank" rel="noopener noreferrer">Register now</a>
             <a class="btn teal" href="#before">Start checklist</a>
             <a class="btn" href="#days">View 3-day plan</a>
-            <button class="btn" type="button" data-open-meet>Draft PG meeting request</button>
+            <button class="btn" type="button" data-open-meet>Let us know you are going</button>
           </div>
         </div>
         <aside class="card video-card">
@@ -623,8 +633,8 @@
             <div><h3>Build a Whova agenda</h3><p class="small muted">Double-book popular sessions and keep backups for smaller rooms.</p></div>
           </article>
           <article class="card due-item">
-            <div class="date-tile"><small>Now</small>PG</div>
-            <div><h3>Request product group time</h3><p class="small muted">Bring plant-floor, ERP/MES, governance and agent-scale questions early.</p></div>
+            <div class="date-tile"><small>Now</small>Team</div>
+            <div><h3>Tell us you are going</h3><p class="small muted">Share your attendee details, manufacturing focus and highest-value conversations so the team can coordinate onsite.</p></div>
           </article>
         </div>
       </section>
@@ -645,8 +655,8 @@
           </div>
           <div class="card">
             <h3>Suggested ask</h3>
-            <p>Before you leave, secure one concrete next step: a pilot pattern, architecture review, ALM plan, Center of Excellence checkpoint, or product-group follow-up for your highest-value manufacturing workflow.</p>
-            <button class="btn primary" type="button" data-open-meet>Draft the ask</button>
+            <p>Before you leave, secure one concrete next step: a pilot pattern, architecture review, ALM plan, Center of Excellence checkpoint, or partner follow-up for your highest-value manufacturing workflow.</p>
+            <button class="btn primary" type="button" data-open-meet>Let us know you are going</button>
           </div>
         </article>
       </div>
@@ -703,7 +713,7 @@
       <div class="wrap">
         <p class="eyebrow">Evening events</p>
         <h2 class="page-title">Build a manufacturing networking plan</h2>
-        <p class="lede">The original guide curates healthcare and open partner events. This Manufacturing version starts with an event planner you can update as manufacturing-specific receptions are confirmed.</p>
+        <p class="lede">Public partner-only receptions are not yet confirmed. Use these verified official links and sponsor leads to build the onsite networking plan as Whova and partner pages fill in.</p>
         <div class="event-controls" id="event-controls" aria-label="Event filters"></div>
         <div class="grid two" id="events-list"></div>
       </div>
@@ -716,7 +726,7 @@
         <p class="lede">Use executive time to move from curiosity to decisions: where low-code and agents fit, what governance model is required, and how the business measures value.</p>
         <div class="grid three">
           <article class="card"><h3>Recommended exec narrative</h3><p>Modernize operations by giving every plant, quality and supply-chain team governed tools to automate work without creating unmanaged shadow IT.</p></article>
-          <article class="card"><h3>Product group topics</h3><p>Copilot Studio scale, Dataverse integration, process mining, managed environments, ALM, licensing and agent governance.</p></article>
+          <article class="card"><h3>Product and partner topics</h3><p>Copilot Studio scale, Dataverse integration, process mining, managed environments, ALM, licensing and agent governance.</p></article>
           <article class="card"><h3>Decision to seek</h3><p>Agree on a 90-day pilot tied to a real operational KPI: downtime, scrap, cycle time, first-pass yield, safety reporting or service resolution.</p></article>
         </div>
         <article class="feature highlight">
@@ -724,7 +734,7 @@
             <h2>Suggested executive meeting ask</h2>
             <p>“We want to understand how Microsoft recommends governing plant-level apps and agents across many facilities while integrating safely with ERP, MES, quality and service systems.”</p>
           </div>
-          <div><button class="btn primary" type="button" data-open-meet>Customize the email</button></div>
+          <div><button class="btn primary" type="button" data-open-meet>Let us know you are going</button></div>
         </article>
       </div>
     </section>
@@ -753,9 +763,9 @@
     <div class="wrap help-row">
       <div>
         <h2>Questions before you go?</h2>
-        <p class="muted">Use this starter to align your account team, customer attendees and product-group meeting requests.</p>
+        <p class="muted">Use this starter to align your account team, customer attendees, partner conversations and onsite priorities.</p>
       </div>
-      <button class="btn primary" type="button" data-open-meet>Draft manufacturing PG request</button>
+      <button class="btn primary" type="button" data-open-meet>Let us know you are going</button>
     </div>
   </section>
 
@@ -767,8 +777,8 @@
     <div class="modal-card">
       <div class="modal-head">
         <div>
-          <p class="eyebrow">Request a meeting</p>
-          <h2 id="meet-title">Draft product group meeting request</h2>
+          <p class="eyebrow">Attendance note</p>
+          <h2 id="meet-title">Let us know you are going</h2>
         </div>
         <button class="icon-btn" type="button" id="close-meet" aria-label="Close">×</button>
       </div>
@@ -781,9 +791,9 @@
       <p class="field-title">Topics</p>
       <div class="topic-grid" id="m-topics"></div>
       <label><span>Specific question or workflow</span><textarea id="m-details" placeholder="For example: governed agents for maintenance handoffs across 20 plants, or replacing spreadsheet-based quality exception tracking."></textarea></label>
-      <label><span>Desired outcome</span><textarea id="m-outcome" placeholder="For example: recommended pilot architecture, roadmap clarity, or a governance pattern."></textarea></label>
-      <h3>Your email draft</h3>
-      <p class="small muted"><b>To:</b> your Microsoft account team &nbsp; <b>Subject:</b> PPCC 2026: manufacturing product group meeting request</p>
+      <label><span>How the team can help onsite</span><textarea id="m-outcome" placeholder="For example: connect me with a partner, find manufacturing peers, review architecture, or help prioritize sessions."></textarea></label>
+      <h3>Your attendance note</h3>
+      <p class="small muted"><b>To:</b> your Microsoft account team &nbsp; <b>Subject:</b> PPCC 2026: I am going</p>
       <pre id="meet-preview"></pre>
       <div class="cta-row">
         <button class="btn primary" type="button" id="copy-draft">Copy draft</button>
@@ -808,27 +818,28 @@
         ["Finalize workshops by Oct 15", "Prioritize hands-on sessions for Copilot Studio, Power Apps, governance, Dataverse, ALM, process mining and automation."],
         ["Install Whova and join the event", "Use Whova to build a schedule, double-book backups, message attendees and coordinate hallway meetings."],
         ["Write your manufacturing scenarios", "Bring 3-5 real workflows: quality exception, EHS incident, maintenance handoff, field-service escalation, supplier delay, line changeover or knowledge capture."],
-        ["Ask for product group time", "Route questions through your Microsoft account team early. Availability is limited and easier to secure before onsite schedules fill."],
+        ["Let the team know you are going", "Share attendee names, manufacturing priorities and partner-conversation interests early so the account team can coordinate onsite."],
         ["Identify executive outcomes", "Decide what business metric you want to improve: downtime, scrap, cycle time, first-pass yield, working capital, safety or service resolution."],
         ["Pack for long days", "Comfortable shoes, layers, a charger, small notebook and a concise problem statement for each conversation."]
       ],
       events: [
-        ["official", "Tuesday", "Night Market Opening Reception", "Official PPCC", "Included with badge", "Start with the official reception to meet makers, partners and Microsoft teams. Use it to find manufacturing peers and active CoE leaders."],
-        ["open", "Tuesday", "Partner happy hours", "Open / partner hosted", "Registration varies", "Watch for events from systems integrators and Power Platform partners with manufacturing, ERP, field service or industrial IoT practices."],
-        ["manufacturing", "Wednesday", "Manufacturing peer meetup", "To be confirmed", "Ask account team", "Placeholder for a manufacturing-focused meetup. Use this slot for customers in automotive, industrial equipment, chemicals, aerospace, mobility and discrete manufacturing."],
-        ["exec", "Tue-Thu", "Executive product group meetings", "Microsoft", "Request required", "Use these for governance, roadmap, security and architecture discussions tied to operational use cases."],
-        ["official", "Wednesday", "Conference concert", "Official PPCC", "Included with badge", "Keep travel time and dinner plans realistic; lines and venue movement take longer than expected."]
+        ["official", "Tuesday", "Night Market Opening Reception", "Official PPCC", "Included with badge", "Start with the official reception to meet makers, partners and Microsoft teams. Use it to find manufacturing peers and active CoE leaders.", "https://powerplatformconf.com/", "Official PPCC site"],
+        ["official", "Wednesday", "Pitbull live at PPCC 2026", "Official PPCC", "Full conference attendees", "The official site confirms the Wednesday evening concert and networking event. Keep travel time and dinner plans realistic; lines and venue movement take longer than expected.", "https://powerplatformconf.com/", "Event details"],
+        ["open", "Tue-Thu", "Sponsor and partner discovery", "PPCC sponsors", "Follow partner pages", "No public partner-only manufacturing receptions were found yet. Start with the verified PPCC sponsor roster and watch the sponsors most relevant to manufacturing, ERP, field service, data, security and governance.", "https://powerplatformconf.com/sponsors", "View sponsors"],
+        ["open", "Tue-Thu", "Manufacturing-relevant partners to watch", "RSM, EY, HCLTech, Accenture, Hitachi Solutions, HSO, KPMG, Quisitive, Pragmatic Works", "Registration varies", "These verified sponsors have practices that commonly intersect with manufacturing transformation. Use their sponsor presence as a conversation map until specific reception links are public.", "https://powerplatformconf.com/sponsors", "Partner roster"],
+        ["manufacturing", "Wednesday", "Manufacturing peer meetup", "To be confirmed", "Use Whova / account team", "Placeholder for a manufacturing-focused meetup. Use this slot for customers in automotive, industrial equipment, chemicals, aerospace, mobility and discrete manufacturing.", "https://powerplatformconf.com/", "Check updates"],
+        ["exec", "Tue-Thu", "Executive architecture conversations", "Microsoft / partner teams", "Coordinate early", "Use these for governance, roadmap, security and architecture discussions tied to operational use cases.", "https://powerplatformconf.com/sponsors", "Find partners"]
       ],
       days: [
         ["Day 1: Learn", "Tuesday, Oct 27", "Keynote, Power Platform roadmap, Copilot Studio direction and governance fundamentals.", ["Opening keynote", "What is new across Power Platform", "Governed maker strategy", "Evening partner networking"]],
-        ["Day 2: Build", "Wednesday, Oct 28", "Go deep on agents, app modernization and manufacturing process examples.", ["Copilot Studio and agents", "Power Apps for frontline workflows", "Process mining and automation", "Manufacturing peer meetup placeholder"]],
+        ["Day 2: Build", "Wednesday, Oct 28", "Go deep on agents, app modernization and manufacturing process examples.", ["Copilot Studio and agents", "Power Apps for frontline workflows", "Process mining and automation", "Sponsor and manufacturing peer networking"]],
         ["Day 3: Operationalize", "Thursday, Oct 29", "Convert inspiration into a practical pilot and operating model.", ["CoE and managed environments", "Dataverse and integration patterns", "Executive decision session", "90-day pilot plan"]]
       ],
       faqs: [
         ["Is this the official PPCC site?", "No. It is a companion starter modeled after the public Know Before You Go reference. Confirm all official dates, links, session rooms and partner events on the official PPCC site and Whova."],
-        ["What makes this Manufacturing-focused?", "The agenda lens, meeting request topics, executive narrative and examples are tailored to plant operations, quality, maintenance, field service, supply chain, ERP/MES integration and governed maker scale."],
+        ["What makes this Manufacturing-focused?", "The agenda lens, attendance note topics, executive narrative and examples are tailored to plant operations, quality, maintenance, field service, supply chain, ERP/MES integration and governed maker scale."],
         ["Which sessions should manufacturing teams prioritize?", "Start with roadmap and governance sessions, then Copilot Studio, Power Apps, process mining, Dataverse, ALM, security, automation and any industry sessions that touch frontline or operational workflows."],
-        ["What should I ask Microsoft product group?", "Ask about scaling agents safely across plants, integrating with ERP/MES/quality systems, managing environments, ALM, licensing, agent governance and recommended pilot patterns."],
+        ["What should I ask Microsoft and partner teams?", "Ask about scaling agents safely across plants, integrating with ERP/MES/quality systems, managing environments, ALM, licensing, agent governance and recommended pilot patterns."],
         ["What should executives take away?", "A crisp 90-day pilot tied to an operational KPI, an owner for governance, and an agreed path from pilot to reusable factory or business-unit pattern."],
         ["Can I share this with customers?", "Yes after validating official event details and replacing placeholders. If you need OneDrive or SharePoint browser-preview safety, rebuild with stricter sandbox rules."]
       ],
@@ -937,12 +948,13 @@
       const filters = [["all", "All"], ["manufacturing", "Manufacturing"], ["exec", "Executive"], ["official", "Official"], ["open", "Open"]];
       filters.forEach(([id, label]) => controls.append(el("button", { class: "btn filter-btn" + (id === "all" ? " active" : ""), type: "button", "data-filter": id, "aria-pressed": id === "all" ? "true" : "false" }, label)));
       const list = $("#events-list");
-      DATA.events.forEach(([kind, day, title, host, access, summary]) => {
+      DATA.events.forEach(([kind, day, title, host, access, summary, url, cta]) => {
         list.append(el("article", { class: "card event-card show", "data-kind": kind },
           el("p", { class: "eyebrow" }, day),
           el("h3", {}, title),
           el("div", { class: "chip-row" }, el("span", { class: "chip" }, host), el("span", { class: "chip" }, access)),
-          el("p", { class: "muted" }, summary)
+          el("p", { class: "muted" }, summary),
+          url ? el("div", { class: "event-actions" }, el("a", { class: "btn teal", href: url, target: "_blank", rel: "noopener noreferrer" }, cta || "Open link")) : ""
         ));
       });
       controls.addEventListener("click", event => {
@@ -1020,7 +1032,7 @@
       $("#meet-preview").textContent =
 `Hi team,
 
-I will be at PPCC 2026 and would like to request time with the Microsoft product group for a manufacturing-focused discussion.
+I will be at PPCC 2026 and wanted to let you know I am going.
 
 Attendee: ${name}
 Organization: ${org}
@@ -1032,10 +1044,10 @@ ${selected}
 Specific workflow or question:
 ${details}
 
-What would make the meeting worthwhile:
+How the team can help onsite:
 ${outcome}
 
-If availability is limited, I am also open to joining a small-group discussion with other manufacturing customers focused on Power Platform, Copilot Studio, agents, governance and operational transformation.
+If there are manufacturing customer meetups, partner events, architecture reviews or small-group discussions, please include me in the coordination.
 
 Thank you.`;
     }
