@@ -5,60 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Know Before You Go - PPCC 2026 for Manufacturing</title>
   <meta name="description" content="A manufacturing-focused Know Before You Go guide for the Power Platform Community Conference 2026 in Las Vegas.">
+  <meta name="theme-color" content="#090d1b">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/Montserrat-Variable.ttf" as="font" type="font/ttf" crossorigin>
   <script>
-  (() => {
-    const param = new URLSearchParams(window.location.search).get("scoutTheme");
-    const theme =
-      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    document.documentElement.setAttribute("data-theme", theme);
-  })();
+    document.documentElement.setAttribute("data-theme", "dark");
   </script>
   <style>
-    :root,
-    html[data-theme="dark"],
-    html[data-theme="light"] {
+    @font-face {
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url("assets/fonts/Montserrat-Variable.ttf") format("truetype");
+    }
+
+    :root {
       color-scheme: dark;
-      --cp-bg: #080a1a;
-      --cp-bg-elevated: #10143b;
-      --cp-surface: #151b4f;
-      --cp-surface-soft: #11163f;
-      --cp-border: rgba(255, 255, 255, 0.14);
-      --cp-border-strong: rgba(255, 255, 255, 0.28);
-      --cp-text: #ffffff;
-      --cp-text-muted: #cbd2ff;
-      --cp-text-soft: #aeb7e8;
-      --cp-accent: #ff3df0;
-      --cp-accent-hover: #d92fd0;
-      --cp-accent-soft: rgba(255, 61, 240, 0.16);
+      --cp-bg: #090d1b;
+      --cp-bg-elevated: #0a172a;
+      --cp-surface: #0a172a;
+      --cp-surface-soft: #0d1c30;
+      --cp-border: rgba(244, 243, 245, 0.14);
+      --cp-border-strong: rgba(244, 243, 245, 0.32);
+      --cp-text: #f4f3f5;
+      --cp-text-muted: #b6bad0;
+      --cp-text-soft: #a0a8c2;
+      --cp-accent: #ff00ff;
+      --cp-accent-hover: #a933ad;
+      --cp-accent-soft: rgba(112, 37, 115, 0.2);
       --cp-accent-fg: #ffffff;
       --cp-success: #2fffe0;
       --cp-danger: #ff6f91;
       --cp-warning: #f5c917;
       --cp-link: #2fffe0;
-      --cp-shadow: 0 26px 80px rgba(0, 0, 0, 0.42);
-      --cp-overlay: rgba(8, 10, 26, 0.84);
-      --cp-panel: rgba(15, 20, 58, 0.78);
-      --cp-panel-strong: rgba(17, 22, 63, 0.94);
-      --cp-sheen: rgba(255, 255, 255, 0.08);
-      --cp-highlight: rgba(47, 255, 224, 0.14);
+      --cp-shadow: 0 14px 30px rgba(7, 16, 36, 0.3);
+      --cp-overlay: rgba(9, 13, 27, 0.94);
+      --cp-panel: rgba(10, 23, 42, 0.6);
+      --cp-panel-strong: #0a172a;
+      --cp-sheen: rgba(255, 255, 255, 0.04);
+      --cp-highlight: rgba(47, 255, 224, 0.09);
+      --cp-purple-glow: rgba(112, 37, 115, 0.85);
+      --cp-blue-glow: rgba(58, 123, 255, 0.15);
+      --cp-blue: #3a7bff;
+      --cp-button-gradient: linear-gradient(90deg, #b100b8, #6a4cf0 55%, #2f6df0);
+      --cp-font: "Montserrat", "Segoe UI", Arial, sans-serif;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 140px; }
+    [hidden] { display: none !important; }
     body {
       margin: 0;
+      position: relative;
+      min-height: 100vh;
       background:
-        radial-gradient(circle at 16% 0, var(--cp-accent-soft), transparent 34rem),
-        radial-gradient(circle at 85% 10%, var(--cp-highlight), transparent 32rem),
-        linear-gradient(135deg, var(--cp-bg-elevated), var(--cp-bg) 58%, var(--cp-surface-soft));
+        radial-gradient(900px 640px at 0 0, var(--cp-purple-glow), transparent 75%),
+        radial-gradient(760px 480px at 100% 0, var(--cp-blue-glow), transparent 70%),
+        var(--cp-bg);
       color: var(--cp-text);
-      font-family: "Lato", "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
-      line-height: 1.55;
+      font-family: var(--cp-font);
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+      -webkit-font-smoothing: antialiased;
     }
+    :focus-visible { outline: 3px solid var(--cp-success); outline-offset: 4px; }
     a { color: var(--cp-link); }
     button, input, textarea, select { font: inherit; }
     button { cursor: pointer; }
-    .wrap { width: min(1180px, calc(100% - 32px)); margin-inline: auto; }
+    img, svg { display: block; max-width: 100%; }
+    .wrap { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+    .grid > *, .hero > *, .feature > *, .due-item > *, .chapter > *,
+    .check-row > *, .time-row > *, .field-grid > *, .modal-head > * { min-width: 0; }
     .skip-link {
       position: absolute;
       left: 16px;
@@ -83,7 +101,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 14px 0 8px;
+      padding: 16px 0 4px;
     }
     .brand {
       display: flex;
@@ -91,16 +109,19 @@
       gap: 12px;
       color: var(--cp-text);
       text-decoration: none;
-      font-weight: 900;
+      min-width: 0;
+      font-size: 15px;
+      line-height: 1.25;
+      font-weight: 700;
       letter-spacing: -0.02em;
     }
     .brand-mark {
       display: grid;
       place-items: center;
-      width: 58px;
-      height: 34px;
-      border-radius: 999px;
-      background: var(--cp-accent);
+      flex: 0 0 58px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--cp-button-gradient);
       color: var(--cp-accent-fg);
       font-weight: 900;
       letter-spacing: -0.04em;
@@ -117,72 +138,67 @@
       color: var(--cp-text-muted);
       font-size: 13px;
       text-align: right;
+      flex: 0 0 250px;
+      margin: 0;
+      line-height: 1.35;
     }
+    .tag b { color: var(--cp-success); }
     .tabs {
       display: flex;
-      gap: 6px;
+      gap: 0;
       overflow-x: auto;
-      padding: 0 0 10px;
+      padding: 0;
+      scrollbar-width: thin;
+      scrollbar-color: var(--cp-border-strong) var(--cp-bg);
     }
     .tab {
-      border: 1px solid var(--cp-border);
-      border-radius: 999px;
-      background: var(--cp-panel);
+      flex: none;
+      position: relative;
+      border: 0;
+      border-bottom: 3px solid transparent;
+      border-radius: 0;
+      background: transparent;
       color: var(--cp-text-muted);
-      padding: 8px 14px;
+      padding: 16px 14px 12px;
       white-space: nowrap;
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.04em;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
     }
     .tab[aria-selected="true"] {
-      background: var(--cp-accent);
-      color: var(--cp-accent-fg);
-      border-color: var(--cp-accent);
+      color: var(--cp-text);
+      border-bottom-color: var(--cp-accent);
     }
+    .tab:hover { color: var(--cp-success); }
     main { min-height: 70vh; }
     .sub-nav {
-      padding: 14px 0;
+      padding: 10px 24px;
       text-align: center;
-      color: var(--cp-text);
-      font-family: "Montserrat", "Segoe UI", Aptos, sans-serif;
+      color: var(--cp-bg-elevated);
+      font-family: var(--cp-font);
       font-size: clamp(18px, 2.5vw, 30px);
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      background: linear-gradient(90deg, var(--cp-accent), var(--cp-success));
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      background: linear-gradient(90deg, var(--cp-success), var(--cp-blue));
     }
-    .sub-nav span { color: var(--cp-bg); }
     .panel { display: none; padding: 48px 0 60px; }
     .panel.active { display: block; }
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
-      gap: 28px;
-      align-items: stretch;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      gap: clamp(32px, 4vw, 64px);
+      align-items: start;
     }
-    .hero-card, .card, .feature, .modal-card {
+    .card, .feature, .modal-card {
       background: var(--cp-panel-strong);
       border: 1px solid var(--cp-border);
       border-radius: 16px;
-      box-shadow: var(--cp-shadow);
+      box-shadow: none;
     }
     .hero-card {
-      padding: clamp(24px, 5vw, 58px);
-      background:
-        linear-gradient(135deg, var(--cp-panel-strong), var(--cp-panel)),
-        var(--cp-panel-strong);
-      overflow: hidden;
-      position: relative;
-    }
-    .hero-card::after {
-      content: "";
-      position: absolute;
-      inset: auto -12% -32% 42%;
-      height: 260px;
-      border-radius: 999px;
-      background: radial-gradient(circle, var(--cp-highlight), transparent 64%);
-      pointer-events: none;
+      padding: 8px 0 0;
     }
     .eyebrow {
       display: inline-flex;
@@ -198,38 +214,49 @@
       content: "";
       width: 10px;
       height: 10px;
+      flex: none;
       border-radius: 2px;
       background: var(--cp-success);
       transform: rotate(45deg);
     }
     h1, h2, h3, h4, p { margin-top: 0; }
+    h2, h3, h4 { line-height: 1.25; }
+    h2 { font-size: clamp(24px, 2.5vw, 36px); font-weight: 800; }
+    h3 { font-size: 20px; font-weight: 700; }
+    h4 { font-size: 17px; font-weight: 700; }
+    p:last-child { margin-bottom: 0; }
+    li + li { margin-top: 10px; }
+    ul { padding-inline-start: 22px; }
     h1 {
-      margin: 18px 0 14px;
-      max-width: 13ch;
-      font-size: clamp(44px, 7vw, 84px);
-      line-height: 0.96;
-      letter-spacing: -0.05em;
-      font-family: "Montserrat", "Segoe UI", Aptos, sans-serif;
-      font-weight: 900;
+      margin: 18px 0 22px;
+      font-size: clamp(46px, 5.4vw, 78px);
+      line-height: 1.05;
+      letter-spacing: -0.028em;
+      font-family: var(--cp-font);
+      font-weight: 800;
+      overflow-wrap: normal;
     }
+    h1 span, h1 em { display: block; }
     h1 em { color: var(--cp-success); font-style: normal; }
     .lede {
       color: var(--cp-text-muted);
-      font-size: clamp(17px, 2vw, 20px);
+      font-size: clamp(16px, 1.3vw, 18.5px);
       max-width: 62ch;
+      line-height: 1.7;
     }
+    .hero-card .lede { max-width: 45ch; }
     .facts {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 24px;
       margin: 28px 0;
     }
     .fact {
-      padding: 14px;
-      border: 1px solid var(--cp-border);
-      border-radius: 0.625rem;
-      background: var(--cp-panel);
+      min-width: 0;
+      padding: 0 24px 0 0;
+      border-right: 1px solid var(--cp-border);
     }
+    .fact:last-child { border: 0; padding-right: 0; }
     .fact span {
       display: block;
       color: var(--cp-text-muted);
@@ -244,100 +271,60 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      min-height: 42px;
+      max-width: 100%;
+      min-height: 48px;
       border-radius: 999px;
       border: 1px solid var(--cp-border);
-      padding: 10px 16px;
-      background: var(--cp-surface);
+      padding: 13px 24px;
+      background: transparent;
       color: var(--cp-text);
       text-decoration: none;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.4;
+      text-align: center;
+      white-space: normal;
     }
     .btn.primary {
-      border-color: var(--cp-accent);
-      background: var(--cp-accent);
+      border-color: transparent;
+      background: var(--cp-button-gradient);
       color: var(--cp-accent-fg);
     }
     .btn:hover { border-color: var(--cp-accent); }
     .cta-row { display: flex; flex-wrap: wrap; gap: 10px; }
     .btn.teal {
       border-color: var(--cp-success);
-      background: var(--cp-success);
-      color: var(--cp-bg);
+      background: transparent;
+      color: var(--cp-success);
     }
-    .video-card { padding: 18px; }
+    .video-card { padding: 0; background: transparent; border: 0; }
     .video-box {
-      min-height: 270px;
-      border: 1px solid var(--cp-border);
-      border-radius: 16px;
+      min-height: 300px;
+      border: 2px solid var(--cp-success);
+      border-radius: 20px;
       background:
         radial-gradient(circle at 20% 20%, var(--cp-highlight), transparent 24rem),
         linear-gradient(135deg, var(--cp-accent-soft), transparent),
         var(--cp-surface);
       display: grid;
       place-items: center;
-      text-align: center;
-      padding: 24px;
+      text-align: left;
+      padding: clamp(24px, 3vw, 40px);
+      box-shadow: var(--cp-shadow);
     }
-    .play {
-      width: 70px;
-      height: 70px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      background: var(--cp-success);
-      color: var(--cp-bg);
-      margin: 0 auto 16px;
-      font-size: 30px;
-    }
-    .chapters { display: grid; gap: 8px; margin-top: 16px; }
-    .visual-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 16px;
-    }
-    .visual-tile {
-      min-height: 112px;
-      border: 1px solid var(--cp-border);
-      border-radius: 16px;
-      overflow: hidden;
-      position: relative;
-      background:
-        radial-gradient(circle at 30% 25%, var(--cp-highlight), transparent 38%),
-        radial-gradient(circle at 75% 70%, var(--cp-accent-soft), transparent 42%),
-        var(--cp-surface);
-    }
-    .visual-tile::before,
-    .visual-tile::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      border: 1px solid var(--cp-border-strong);
-    }
-    .visual-tile::before { width: 80px; height: 80px; left: 18px; top: 18px; }
-    .visual-tile::after { width: 130px; height: 130px; right: -32px; bottom: -34px; }
-    .visual-tile b {
-      position: absolute;
-      left: 14px;
-      bottom: 12px;
-      max-width: 11ch;
-      font-family: "Montserrat", "Segoe UI", Aptos, sans-serif;
-      font-size: 18px;
-      line-height: 1;
-    }
+    .chapters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
     .chapter {
       display: grid;
-      grid-template-columns: 70px 1fr;
+      grid-template-columns: 32px minmax(0, 1fr);
       gap: 12px;
       padding: 12px;
-      border: 1px solid var(--cp-border);
+      border: 0;
       border-radius: 0.625rem;
-      background: var(--cp-panel);
+      background: transparent;
     }
-    .chapter time { color: var(--cp-success); font-weight: 900; }
+    .chapter-number { color: var(--cp-success); font-weight: 700; }
+    .chapter b { font-size: 14px; line-height: 1.4; }
+    .chapter .muted { font-size: 13px; line-height: 1.5; }
     .grid { display: grid; gap: 16px; }
     .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -345,21 +332,22 @@
       margin: 0 0 20px;
       display: flex;
       justify-content: space-between;
-      align-items: end;
+      align-items: flex-end;
       gap: 16px;
     }
     .section-head h2, .page-title {
       margin: 8px 0 0;
-      font-size: clamp(30px, 4vw, 54px);
-      line-height: 1.06;
-      letter-spacing: -0.04em;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
     }
-    .card, .feature { padding: 18px; }
+    .card, .feature { padding: 24px; }
     .feature.highlight {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
-      gap: 20px;
-      margin-top: 22px;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+      gap: 32px;
+      margin-top: 40px;
+      border-color: var(--cp-success);
       background:
         radial-gradient(circle at 92% 10%, var(--cp-highlight), transparent 20rem),
         linear-gradient(135deg, var(--cp-accent-soft), transparent),
@@ -368,6 +356,7 @@
     .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
     .chip {
       display: inline-flex;
+      max-width: 100%;
       border: 1px solid var(--cp-border);
       border-radius: 999px;
       padding: 5px 10px;
@@ -376,18 +365,21 @@
       font-size: 12px;
       font-weight: 700;
     }
-    .do-soon { margin: 28px 0 0; }
+    .do-soon { margin: 40px auto 0; }
+    .do-soon .section-head h2 { font-size: clamp(24px, 3vw, 32px); }
+    .do-soon .eyebrow { margin-bottom: 8px; }
     .due-item {
       display: grid;
-      grid-template-columns: 58px 1fr;
-      gap: 12px;
+      grid-template-columns: 54px minmax(0, 1fr);
+      gap: 16px;
       align-items: start;
     }
+    .due-item h3 { font-size: 17px; margin-bottom: 10px; }
     .date-tile {
       border-radius: 0.625rem;
       border: 1px solid var(--cp-border);
-      background: var(--cp-accent);
-      color: var(--cp-accent-fg);
+      background: var(--cp-highlight);
+      color: var(--cp-success);
       text-align: center;
       padding: 8px 6px;
       font-weight: 800;
@@ -405,8 +397,8 @@
       border-radius: 16px;
     }
     .check-row input { width: 20px; height: 20px; accent-color: var(--cp-accent); margin-top: 3px; }
-    .check-row.done { opacity: 0.68; }
     .check-row.done h3 { text-decoration: line-through; }
+    .check-row.done { border-color: var(--cp-success); }
     .progress {
       height: 12px;
       border: 1px solid var(--cp-border);
@@ -419,7 +411,7 @@
     .timeline { display: grid; gap: 12px; }
     .time-row {
       display: grid;
-      grid-template-columns: 118px 1fr;
+      grid-template-columns: 118px minmax(0, 1fr);
       gap: 14px;
       border-left: 3px solid var(--cp-success);
       padding: 6px 0 6px 14px;
@@ -427,9 +419,9 @@
     .time-row time { color: var(--cp-success); font-weight: 900; }
     .event-controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
     .filter-btn.active {
-      background: var(--cp-accent);
-      color: var(--cp-accent-fg);
-      border-color: var(--cp-accent);
+      background: var(--cp-success);
+      color: var(--cp-bg);
+      border-color: var(--cp-success);
     }
     .event-card { display: none; }
     .event-card.show { display: block; }
@@ -440,6 +432,7 @@
       background: var(--cp-surface);
     }
     .faq summary { cursor: pointer; font-weight: 800; }
+    .faq details p { margin-top: 16px; }
     .search-box {
       width: 100%;
       border: 1px solid var(--cp-border);
@@ -467,13 +460,17 @@
     }
     dialog {
       border: 0;
-      padding: 0;
+      padding: 4px;
       background: transparent;
       color: var(--cp-text);
       width: min(820px, calc(100% - 24px));
+      max-height: calc(100svh - 32px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
     }
     dialog::backdrop { background: var(--cp-overlay); }
-    .modal-card { padding: 22px; }
+    body:has(dialog[open]) { overflow: hidden; }
+    .modal-card { padding: clamp(16px, 3vw, 28px); }
     .modal-head { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
     .icon-btn {
       border: 1px solid var(--cp-border);
@@ -482,9 +479,12 @@
       color: var(--cp-text);
       width: 38px;
       height: 38px;
+      flex: 0 0 38px;
     }
     .field-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-    label span, .field-title { display: block; margin: 12px 0 6px; color: var(--cp-text-muted); font-size: 13px; font-weight: 800; }
+    .field-grid label > span, .modal-card > label > span, .field-title {
+      display: block; margin: 12px 0 6px; color: var(--cp-text-muted); font-size: 13px; font-weight: 700;
+    }
     input[type="text"], textarea {
       width: 100%;
       border: 1px solid var(--cp-border);
@@ -492,12 +492,13 @@
       padding: 11px 12px;
       background: var(--cp-surface);
       color: var(--cp-text);
+      font-size: 16px;
     }
     textarea { min-height: 96px; resize: vertical; }
     .topic-grid { display: grid; gap: 8px; }
     .topic-grid label {
       display: grid;
-      grid-template-columns: 24px 1fr;
+      grid-template-columns: 24px minmax(0, 1fr);
       gap: 8px;
       align-items: start;
       border: 1px solid var(--cp-border);
@@ -505,8 +506,12 @@
       padding: 10px;
       background: var(--cp-surface);
     }
+    .topic-grid input { accent-color: var(--cp-success); }
+    .topic-grid span { min-width: 0; font-size: 14px; }
     pre {
       white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      min-width: 0;
       background: var(--cp-surface-soft);
       border: 1px solid var(--cp-border);
       border-radius: 0.625rem;
@@ -522,10 +527,27 @@
 
     @media (max-width: 900px) {
       .hero, .grid.two, .grid.three, .feature.highlight, .field-grid { grid-template-columns: 1fr; }
-      .facts { grid-template-columns: 1fr; }
       .tag { display: none; }
       .help-row { align-items: stretch; flex-direction: column; }
       .time-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .wrap { width: calc(100% - 32px); }
+      .header-row { padding-top: 12px; }
+      .brand { font-size: 13px; }
+      .brand small { font-size: 10px; }
+      .brand-mark { flex-basis: 50px; }
+      .tab { padding-inline: 12px; font-size: 11px; }
+      .sub-nav { padding-inline: 16px; font-size: 18px; }
+      .panel { padding-block: 28px 40px; }
+      h1 { font-size: clamp(40px, 11vw, 62px); }
+      .card, .feature { padding: 20px; }
+      .video-card { padding: 0; }
+      .chapters { grid-template-columns: 1fr; }
+      .feature.highlight { gap: 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
     }
   </style>
 </head>
@@ -539,7 +561,7 @@
       </a>
       <p class="tag"><b>Manufacturing edition</b><br>Low-code, agents, operations and frontline transformation</p>
     </div>
-    <nav class="wrap tabs" aria-label="Guide sections" id="tabs"></nav>
+    <div class="wrap tabs" role="tablist" aria-label="Guide sections" id="tabs"></div>
   </header>
   <section class="sub-nav">5th Annual Power Platform <span>Community Conference</span></section>
 
@@ -547,13 +569,13 @@
     <section id="panel-start" class="panel active" tabindex="-1">
       <div class="wrap hero">
         <div class="hero-card">
-          <p class="eyebrow">Las Vegas | October 27-29, 2026</p>
-          <h1>The Manufacturing <em>Know Before You Go</em> Guide</h1>
-          <p class="lede">A PPCC-style field guide for manufacturing leaders, makers, IT teams and operations stakeholders building AI apps, agents and automation with Microsoft Power Platform.</p>
+          <p class="eyebrow">Manufacturing edition</p>
+          <h1><span>Know</span><em>Before</em><span>You Go</span></h1>
+          <p class="lede">Your manufacturing team's guide to Las Vegas: plan the sessions, conversations and next steps that matter for apps, agents and factory operations.</p>
           <div class="facts" aria-label="Conference facts">
             <div class="fact"><span>When</span><b>Oct 27-29, 2026</b></div>
             <div class="fact"><span>Where</span><b>MGM Grand, Las Vegas</b></div>
-            <div class="fact"><span>Theme</span><b>AI apps and agents for operations</b></div>
+            <div class="fact"><span>Focus</span><b>Manufacturing apps &amp; agents</b></div>
           </div>
           <div class="cta-row">
             <a class="btn primary" href="https://powerplatformconf.com/register" target="_blank" rel="noopener noreferrer">Register now</a>
@@ -561,57 +583,56 @@
             <a class="btn" href="#days">View 3-day plan</a>
             <button class="btn" type="button" data-open-meet>Draft PG meeting request</button>
           </div>
-          <div class="do-soon">
-            <div class="section-head">
-              <div>
-                <p class="eyebrow">Do these soon</p>
-                <h2>Manufacturing attendee prep</h2>
-              </div>
-            </div>
-            <div class="grid three">
-              <article class="card due-item">
-                <div class="date-tile"><small>Oct</small>15</div>
-                <div><h3>Finalize workshops</h3><p class="small muted">Pick hands-on labs for Copilot Studio, Power Apps, governance and process mining.</p></div>
-              </article>
-              <article class="card due-item">
-                <div class="date-tile"><small>Mid</small>Oct</div>
-                <div><h3>Build a Whova agenda</h3><p class="small muted">Double-book popular sessions and keep backups for smaller rooms.</p></div>
-              </article>
-              <article class="card due-item">
-                <div class="date-tile"><small>Now</small>PG</div>
-                <div><h3>Request product group time</h3><p class="small muted">Bring plant-floor, ERP/MES, governance and agent-scale questions early.</p></div>
-              </article>
-            </div>
-          </div>
         </div>
         <aside class="card video-card">
           <div class="video-box">
             <div>
-              <div class="play" aria-hidden="true">▶</div>
-              <h2>The biggest Power Platform community week, filtered for Manufacturing</h2>
-              <p class="muted">The official PPCC site uses a dark, high-energy maker-conference look. This version follows that style while keeping manufacturing-specific planning content front and center.</p>
-              <p><a class="btn primary" href="https://powerplatformconf.com/" target="_blank" rel="noopener noreferrer">Open official PPCC site</a></p>
+              <p class="eyebrow">Build with a purpose</p>
+              <h2>Bring a factory workflow.<br>Leave with a plan.</h2>
+              <p class="muted">Explore governed apps and agents for quality, maintenance, supply chain and frontline teams. Bring your ERP and MES integration questions to the conversations.</p>
+              <div class="cta-row">
+                <a class="btn primary" href="https://powerplatformconf.com/" target="_blank" rel="noopener noreferrer">Official PPCC site</a>
+                <a class="btn teal" href="https://www.youtube.com/watch?v=VpZvCUSRKrs" target="_blank" rel="noopener noreferrer">Power HUG video</a>
+              </div>
+              <p class="small muted" style="margin-top:16px">The Power HUG video is healthcare-led; its general conference logistics are useful across industries.</p>
             </div>
           </div>
-          <div class="visual-grid" aria-label="Conference visual placeholders">
-            <div class="visual-tile"><b>AI Apps</b></div>
-            <div class="visual-tile"><b>Agents</b></div>
-            <div class="visual-tile"><b>Makers</b></div>
-            <div class="visual-tile"><b>Factory Flow</b></div>
-          </div>
-          <div class="chapters" aria-label="Suggested manufacturing jump points">
-            <div class="chapter"><time>0:00</time><div><b>Start with logistics</b><br><span class="muted">Registration, venue, Whova and badge pickup.</span></div></div>
-            <div class="chapter"><time>8:00</time><div><b>Prioritize sessions</b><br><span class="muted">Choose roadmap, governance and maker sessions first.</span></div></div>
-            <div class="chapter"><time>18:00</time><div><b>Plan industry conversations</b><br><span class="muted">Set up time for manufacturing scenarios and executive meetings.</span></div></div>
-            <div class="chapter"><time>27:00</time><div><b>Final attendee tips</b><br><span class="muted">Shoes, layers, chargers and backup agenda.</span></div></div>
+          <div class="chapters" aria-label="Manufacturing guide highlights">
+            <div class="chapter"><span class="chapter-number">01</span><div><b><a href="#before">Start with logistics</a></b><br><span class="muted">Registration, venue, Whova and badge pickup.</span></div></div>
+            <div class="chapter"><span class="chapter-number">02</span><div><b><a href="#days">Prioritize sessions</a></b><br><span class="muted">Roadmap, governance and maker sessions.</span></div></div>
+            <div class="chapter"><span class="chapter-number">03</span><div><b><a href="#exec">Plan conversations</a></b><br><span class="muted">Manufacturing scenarios and executive meetings.</span></div></div>
+            <div class="chapter"><span class="chapter-number">04</span><div><b><a href="#ground">Onsite essentials</a></b><br><span class="muted">Shoes, layers, chargers and backup agenda.</span></div></div>
           </div>
         </aside>
       </div>
 
+      <section class="wrap do-soon" aria-labelledby="prep-title">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Do these soon</p>
+            <h2 id="prep-title">Manufacturing attendee prep</h2>
+          </div>
+        </div>
+        <div class="grid three">
+          <article class="card due-item">
+            <div class="date-tile"><small>Oct</small>15</div>
+            <div><h3>Finalize workshops</h3><p class="small muted">Pick hands-on labs for Copilot Studio, Power Apps, governance and process mining.</p></div>
+          </article>
+          <article class="card due-item">
+            <div class="date-tile"><small>Mid</small>Oct</div>
+            <div><h3>Build a Whova agenda</h3><p class="small muted">Double-book popular sessions and keep backups for smaller rooms.</p></div>
+          </article>
+          <article class="card due-item">
+            <div class="date-tile"><small>Now</small>PG</div>
+            <div><h3>Request product group time</h3><p class="small muted">Bring plant-floor, ERP/MES, governance and agent-scale questions early.</p></div>
+          </article>
+        </div>
+      </section>
+
       <div class="wrap">
         <article class="feature highlight">
           <div>
-            <p class="eyebrow">Manufacturing anchor session</p>
+            <p class="eyebrow">Manufacturing priorities</p>
             <h2>Agents and low-code for the connected factory</h2>
             <p class="lede">Use PPCC to pressure-test where Power Platform can remove operational friction: quality escapes, line-changeover work, EHS reporting, maintenance handoffs, supplier exceptions and frontline knowledge capture.</p>
             <div class="chip-row">
@@ -640,8 +661,8 @@
             <p class="lede">Check items off as you complete them. This is a starter version; confirm official dates and links before sharing externally.</p>
           </div>
         </div>
-        <div class="progress" aria-label="Checklist progress"><i id="progress-bar"></i></div>
-        <p class="small muted" id="progress-text"></p>
+        <div class="progress" role="progressbar" aria-label="Checklist progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="progress-bar"></i></div>
+        <p class="small muted" id="progress-text" role="status"></p>
         <div class="checklist" id="checklist"></div>
       </div>
     </section>
@@ -721,8 +742,9 @@
       <div class="wrap">
         <p class="eyebrow">FAQ & links</p>
         <h2 class="page-title">Quick answers for manufacturing attendees</h2>
-        <input class="search-box" id="faq-search" type="search" placeholder="Search questions">
+        <input class="search-box" id="faq-search" type="search" aria-label="Search frequently asked questions" placeholder="Search questions">
         <div class="grid faq" id="faq-list"></div>
+        <p id="faq-empty" class="muted" role="status" hidden>No matching questions. Try another word or ask your account team.</p>
       </div>
     </section>
   </main>
@@ -738,7 +760,7 @@
   </section>
 
   <footer class="wrap">
-    <p>Manufacturing-focused companion guide inspired by the public PPCC Know Before You Go reference site. Validate official conference details, partner events and agenda entries before customer distribution. Last updated Oct 9, 2026.</p>
+    <p>An unofficial manufacturing companion guide for PPCC 2026, not an organizer-operated website. Confirm conference details and partner events on the <a href="https://powerplatformconf.com/" target="_blank" rel="noopener noreferrer">official PPCC site</a>. Last updated Oct 9, 2026.</p>
   </footer>
 
   <dialog id="meet-dialog" aria-labelledby="meet-title">
@@ -837,34 +859,61 @@
       return node;
     }
 
-    function activate(tab) {
+    function activate(tab, moveFocus = false) {
       if (!DATA.tabs.some(([id]) => id === tab)) tab = "start";
       $$(".panel").forEach(panel => panel.classList.toggle("active", panel.id === `panel-${tab}`));
-      $$(".tab").forEach(button => button.setAttribute("aria-selected", String(button.dataset.tab === tab)));
-      $(`#panel-${tab}`).focus({ preventScroll: true });
+      $$(".tab").forEach(button => {
+        const selected = button.dataset.tab === tab;
+        button.setAttribute("aria-selected", String(selected));
+        button.tabIndex = selected ? 0 : -1;
+      });
+      if (moveFocus) {
+        window.scrollTo({ top: 0, behavior: "instant" });
+        $(`#panel-${tab}`).focus({ preventScroll: true });
+        $(`#tab-${tab}`).scrollIntoView({ block: "nearest", inline: "nearest" });
+      }
     }
 
     function buildTabs() {
       const tabs = $("#tabs");
       DATA.tabs.forEach(([id, label]) => {
+        $(`#panel-${id}`).setAttribute("role", "tabpanel");
+        $(`#panel-${id}`).setAttribute("aria-labelledby", `tab-${id}`);
         tabs.append(el("button", {
           class: "tab",
           type: "button",
           role: "tab",
+          id: `tab-${id}`,
+          "aria-controls": `panel-${id}`,
+          tabindex: id === "start" ? "0" : "-1",
           "aria-selected": id === "start" ? "true" : "false",
           "data-tab": id,
-          onclick: () => { location.hash = id; activate(id); }
+          onclick: () => { location.hash = id; }
         }, label));
       });
-      window.addEventListener("hashchange", () => activate(location.hash.replace("#", "")));
+      tabs.addEventListener("keydown", event => {
+        const button = event.target.closest(".tab");
+        if (!button) return;
+        const ids = DATA.tabs.map(([id]) => id);
+        const index = ids.indexOf(button.dataset.tab);
+        let next;
+        if (event.key === "ArrowRight") next = (index + 1) % ids.length;
+        else if (event.key === "ArrowLeft") next = (index + ids.length - 1) % ids.length;
+        else if (event.key === "Home") next = 0;
+        else if (event.key === "End") next = ids.length - 1;
+        else return;
+        event.preventDefault();
+        $(`#tab-${ids[next]}`).focus();
+      });
+      window.addEventListener("hashchange", () => activate(location.hash.replace("#", ""), true));
       activate(location.hash.replace("#", "") || "start");
     }
 
     function buildChecklist() {
       const list = $("#checklist");
       DATA.checklist.forEach(([title, detail], index) => {
-        const checkbox = el("input", { type: "checkbox", id: `check-${index}` });
-        const row = el("article", { class: "check-row" }, checkbox, el("div", {}, el("h3", {}, title), el("p", { class: "muted" }, detail)));
+        const checkbox = el("input", { type: "checkbox", id: `check-${index}`, "aria-labelledby": `check-title-${index}` });
+        const row = el("article", { class: "check-row" }, checkbox, el("div", {}, el("h3", { id: `check-title-${index}` }, el("label", { for: `check-${index}` }, title)), el("p", { class: "muted" }, detail)));
         checkbox.addEventListener("change", () => {
           row.classList.toggle("done", checkbox.checked);
           updateProgress();
@@ -879,13 +928,14 @@
       const done = boxes.filter(box => box.checked).length;
       const pct = boxes.length ? Math.round((done / boxes.length) * 100) : 0;
       $("#progress-bar").style.width = `${pct}%`;
+      $(".progress").setAttribute("aria-valuenow", String(pct));
       $("#progress-text").textContent = `${done} of ${boxes.length} complete`;
     }
 
     function buildEvents() {
       const controls = $("#event-controls");
       const filters = [["all", "All"], ["manufacturing", "Manufacturing"], ["exec", "Executive"], ["official", "Official"], ["open", "Open"]];
-      filters.forEach(([id, label]) => controls.append(el("button", { class: "btn filter-btn" + (id === "all" ? " active" : ""), type: "button", "data-filter": id }, label)));
+      filters.forEach(([id, label]) => controls.append(el("button", { class: "btn filter-btn" + (id === "all" ? " active" : ""), type: "button", "data-filter": id, "aria-pressed": id === "all" ? "true" : "false" }, label)));
       const list = $("#events-list");
       DATA.events.forEach(([kind, day, title, host, access, summary]) => {
         list.append(el("article", { class: "card event-card show", "data-kind": kind },
@@ -898,7 +948,10 @@
       controls.addEventListener("click", event => {
         const button = event.target.closest("button");
         if (!button) return;
-        $$(".filter-btn").forEach(btn => btn.classList.toggle("active", btn === button));
+        $$(".filter-btn").forEach(btn => {
+          btn.classList.toggle("active", btn === button);
+          btn.setAttribute("aria-pressed", String(btn === button));
+        });
         const filter = button.dataset.filter;
         $$(".event-card").forEach(card => card.classList.toggle("show", filter === "all" || card.dataset.kind === filter));
       });
@@ -926,18 +979,25 @@
       });
       $("#faq-search").addEventListener("input", event => {
         const q = event.target.value.trim().toLowerCase();
-        $$("details", list).forEach(item => item.style.display = item.dataset.q.includes(q) ? "" : "none");
+        const items = $$("details", list);
+        items.forEach(item => item.hidden = !item.dataset.q.includes(q));
+        $("#faq-empty").hidden = items.some(item => !item.hidden);
       });
     }
 
     function buildMeetDialog() {
       const dialog = $("#meet-dialog");
       const topics = $("#m-topics");
-      DATA.topics.forEach(topic => topics.append(el("label", {}, el("input", { type: "checkbox", value: topic }), topic)));
+      DATA.topics.forEach(topic => topics.append(el("label", {}, el("input", { type: "checkbox", value: topic }), el("span", {}, topic))));
       const inputs = ["#m-name", "#m-org", "#m-role", "#m-details", "#m-outcome"];
       inputs.forEach(selector => $(selector).addEventListener("input", updateDraft));
       topics.addEventListener("change", updateDraft);
-      $$("[data-open-meet]").forEach(button => button.addEventListener("click", () => { dialog.showModal(); updateDraft(); }));
+      $$("[data-open-meet]").forEach(button => button.addEventListener("click", () => {
+        $("#copy-status").textContent = "";
+        dialog.showModal();
+        dialog.scrollTop = 0;
+        updateDraft();
+      }));
       $("#close-meet").addEventListener("click", () => dialog.close());
       $("#copy-draft").addEventListener("click", async () => {
         try {

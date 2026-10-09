@@ -2,7 +2,11 @@
 
 A manufacturing-focused companion guide for Power Platform Community Conference 2026.
 
-This repository is intended for GitHub Pages. The site is a self-contained `index.html` file with no build step.
+This repository is intended for GitHub Pages. There is no build step. `index.html` loads the locally hosted Montserrat variable font in `assets/fonts/`; no remote font service or analytics is required.
+
+Montserrat is distributed under the SIL Open Font License. The original license and copyright notice are included in `assets/fonts/OFL.txt`. Font source: https://github.com/google/fonts/tree/main/ofl/montserrat.
+
+The guide uses Montserrat throughout, the reference sites' dark navy/charcoal background, purple glow, teal accent and magenta-to-blue actions. It is an unofficial companion, not an organizer-operated website. Manufacturing-specific events remain unconfirmed where indicated.
 
 ## Publish
 
@@ -14,5 +18,4 @@ This repository is intended for GitHub Pages. The site is a self-contained `inde
 
 The site will publish at:
 
-`https://rickylawson.github.io/ppcc-manufacturing-kbyg/`
-
+`https://ricky-lawson.github.io/ppcc-manufacturing-kbyg/`
