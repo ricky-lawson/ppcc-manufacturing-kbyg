@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Know Before You Go - PPCC 2026 for Manufacturing</title>
+  <meta name="description" content="A manufacturing-focused Know Before You Go guide for the Power Platform Community Conference 2026 in Las Vegas.">
+  <script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --cp-bg: #f7f4ef;
+      --cp-bg-elevated: #fcfbf8;
+      --cp-surface: #ffffff;
+      --cp-surface-soft: #f5f5f5;
+      --cp-border: #dedede;
+      --cp-border-strong: #919191;
+      --cp-text: #242424;
+      --cp-text-muted: #5c5c5c;
+      --cp-text-soft: #6f6f6f;
+      --cp-accent: #b11f4b;
+      --cp-accent-hover: #9a1a41;
+      --cp-accent-soft: rgba(177, 31, 75, 0.08);
+      --cp-accent-fg: #ffffff;
+      --cp-success: #16a34a;
+      --cp-danger: #dc2626;
+      --cp-warning: #f59e0b;
+      --cp-link: #0078d4;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+      --cp-overlay: rgba(255, 255, 255, 0.8);
+      --cp-panel: rgba(255, 255, 255, 0.86);
+      --cp-panel-strong: rgba(255, 255, 255, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.55);
+      --cp-highlight: rgba(177, 31, 75, 0.12);
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --cp-bg: #3d3b3a;
+      --cp-bg-elevated: #343231;
+      --cp-surface: #292929;
+      --cp-surface-soft: #2e2e2e;
+      --cp-border: #474747;
+      --cp-border-strong: #5f5f5f;
+      --cp-text: #dedede;
+      --cp-text-muted: #919191;
+      --cp-text-soft: #b0b0b0;
+      --cp-accent: #fd8ea1;
+      --cp-accent-hover: #fb7b91;
+      --cp-accent-soft: rgba(253, 142, 161, 0.14);
+      --cp-accent-fg: #1a1a1a;
+      --cp-success: #4ade80;
+      --cp-danger: #f87171;
+      --cp-warning: #fbbf24;
+      --cp-link: #4da6ff;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+      --cp-overlay: rgba(41, 41, 41, 0.88);
+      --cp-panel: rgba(41, 41, 41, 0.72);
+      --cp-panel-strong: rgba(41, 41, 41, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.04);
+      --cp-highlight: rgba(253, 142, 161, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, var(--cp-accent-soft), transparent 32rem),
+        linear-gradient(180deg, var(--cp-bg-elevated), var(--cp-bg));
+      color: var(--cp-text);
+      font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.55;
+    }
+    a { color: var(--cp-link); }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    .wrap { width: min(1180px, calc(100% - 32px)); margin-inline: auto; }
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -56px;
+      padding: 10px 14px;
+      background: var(--cp-accent);
+      color: var(--cp-accent-fg);
+      border-radius: 0.625rem;
+      z-index: 20;
+    }
+    .skip-link:focus { top: 12px; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: var(--cp-overlay);
+      border-bottom: 1px solid var(--cp-border);
+    }
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0 8px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--cp-text);
+      text-decoration: none;
+      font-weight: 750;
+      letter-spacing: -0.02em;
+    }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--cp-accent);
+      color: var(--cp-accent-fg);
+      font-weight: 800;
+    }
+    .brand small {
+      display: block;
+      color: var(--cp-text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .tag {
+      color: var(--cp-text-muted);
+      font-size: 13px;
+      text-align: right;
+    }
+    .tabs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 0 0 10px;
+    }
+    .tab {
+      border: 1px solid var(--cp-border);
+      border-radius: 999px;
+      background: var(--cp-surface);
+      color: var(--cp-text-muted);
+      padding: 8px 14px;
+      white-space: nowrap;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .tab[aria-selected="true"] {
+      background: var(--cp-accent);
+      color: var(--cp-accent-fg);
+      border-color: var(--cp-accent);
+    }
+    main { min-height: 70vh; }
+    .panel { display: none; padding: 42px 0 56px; }
+    .panel.active { display: block; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+    .hero-card, .card, .feature, .modal-card {
+      background: var(--cp-panel-strong);
+      border: 1px solid var(--cp-border);
+      border-radius: 16px;
+      box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14);
+    }
+    .hero-card { padding: clamp(24px, 5vw, 56px); }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--cp-accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      background: var(--cp-accent);
+      transform: rotate(45deg);
+    }
+    h1, h2, h3, h4, p { margin-top: 0; }
+    h1 {
+      margin: 18px 0 14px;
+      max-width: 11ch;
+      font-size: clamp(44px, 7vw, 84px);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+    }
+    h1 em { color: var(--cp-accent); font-style: normal; }
+    .lede {
+      color: var(--cp-text-muted);
+      font-size: clamp(17px, 2vw, 20px);
+      max-width: 62ch;
+    }
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 28px 0;
+    }
+    .fact {
+      padding: 14px;
+      border: 1px solid var(--cp-border);
+      border-radius: 0.625rem;
+      background: var(--cp-surface);
+    }
+    .fact span {
+      display: block;
+      color: var(--cp-text-muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .fact b { display: block; margin-top: 4px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      border-radius: 999px;
+      border: 1px solid var(--cp-border);
+      padding: 10px 16px;
+      background: var(--cp-surface);
+      color: var(--cp-text);
+      text-decoration: none;
+      font-weight: 750;
+    }
+    .btn.primary {
+      border-color: var(--cp-accent);
+      background: var(--cp-accent);
+      color: var(--cp-accent-fg);
+    }
+    .btn:hover { border-color: var(--cp-accent); }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .video-card { padding: 18px; }
+    .video-box {
+      min-height: 270px;
+      border: 1px solid var(--cp-border);
+      border-radius: 16px;
+      background:
+        linear-gradient(135deg, var(--cp-accent-soft), transparent),
+        var(--cp-surface);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 24px;
+    }
+    .play {
+      width: 70px;
+      height: 70px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: var(--cp-accent);
+      color: var(--cp-accent-fg);
+      margin: 0 auto 16px;
+      font-size: 30px;
+    }
+    .chapters { display: grid; gap: 8px; margin-top: 16px; }
+    .chapter {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid var(--cp-border);
+      border-radius: 0.625rem;
+      background: var(--cp-surface);
+    }
+    .chapter time { color: var(--cp-accent); font-weight: 800; }
+    .grid { display: grid; gap: 16px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .section-head {
+      margin: 0 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+    }
+    .section-head h2, .page-title {
+      margin: 8px 0 0;
+      font-size: clamp(30px, 4vw, 54px);
+      line-height: 1.06;
+      letter-spacing: -0.04em;
+    }
+    .card, .feature { padding: 18px; }
+    .feature.highlight {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+      gap: 20px;
+      margin-top: 22px;
+      background: linear-gradient(135deg, var(--cp-highlight), transparent), var(--cp-panel-strong);
+    }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+    .chip {
+      display: inline-flex;
+      border: 1px solid var(--cp-border);
+      border-radius: 999px;
+      padding: 5px 10px;
+      color: var(--cp-text-muted);
+      background: var(--cp-surface);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .do-soon { margin: 28px 0 0; }
+    .due-item {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+    .date-tile {
+      border-radius: 0.625rem;
+      border: 1px solid var(--cp-border);
+      background: var(--cp-accent-soft);
+      color: var(--cp-accent);
+      text-align: center;
+      padding: 8px 6px;
+      font-weight: 800;
+    }
+    .date-tile small { display: block; color: var(--cp-text-muted); font-size: 11px; text-transform: uppercase; }
+    .checklist { display: grid; gap: 14px; }
+    .check-row {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 16px;
+      background: var(--cp-surface);
+      border: 1px solid var(--cp-border);
+      border-radius: 16px;
+    }
+    .check-row input { width: 20px; height: 20px; accent-color: var(--cp-accent); margin-top: 3px; }
+    .check-row.done { opacity: 0.68; }
+    .check-row.done h3 { text-decoration: line-through; }
+    .progress {
+      height: 12px;
+      border: 1px solid var(--cp-border);
+      border-radius: 999px;
+      background: var(--cp-surface-soft);
+      overflow: hidden;
+      margin-top: 18px;
+    }
+    .progress i { display: block; height: 100%; width: 0; background: var(--cp-accent); }
+    .timeline { display: grid; gap: 12px; }
+    .time-row {
+      display: grid;
+      grid-template-columns: 118px 1fr;
+      gap: 14px;
+      border-left: 3px solid var(--cp-accent);
+      padding: 6px 0 6px 14px;
+    }
+    .time-row time { color: var(--cp-accent); font-weight: 800; }
+    .event-controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
+    .filter-btn.active {
+      background: var(--cp-accent);
+      color: var(--cp-accent-fg);
+      border-color: var(--cp-accent);
+    }
+    .event-card { display: none; }
+    .event-card.show { display: block; }
+    .faq details {
+      padding: 16px;
+      border: 1px solid var(--cp-border);
+      border-radius: 16px;
+      background: var(--cp-surface);
+    }
+    .faq summary { cursor: pointer; font-weight: 800; }
+    .search-box {
+      width: 100%;
+      border: 1px solid var(--cp-border);
+      border-radius: 0.625rem;
+      padding: 12px 14px;
+      background: var(--cp-surface);
+      color: var(--cp-text);
+      margin-bottom: 14px;
+    }
+    .help-band {
+      border-top: 1px solid var(--cp-border);
+      background: var(--cp-bg-elevated);
+      padding: 26px 0;
+    }
+    .help-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+    footer {
+      color: var(--cp-text-muted);
+      font-size: 13px;
+      padding: 22px 0 44px;
+    }
+    dialog {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: var(--cp-text);
+      width: min(820px, calc(100% - 24px));
+    }
+    dialog::backdrop { background: var(--cp-overlay); }
+    .modal-card { padding: 22px; }
+    .modal-head { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
+    .icon-btn {
+      border: 1px solid var(--cp-border);
+      border-radius: 999px;
+      background: var(--cp-surface);
+      color: var(--cp-text);
+      width: 38px;
+      height: 38px;
+    }
+    .field-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    label span, .field-title { display: block; margin: 12px 0 6px; color: var(--cp-text-muted); font-size: 13px; font-weight: 800; }
+    input[type="text"], textarea {
+      width: 100%;
+      border: 1px solid var(--cp-border);
+      border-radius: 0.625rem;
+      padding: 11px 12px;
+      background: var(--cp-surface);
+      color: var(--cp-text);
+    }
+    textarea { min-height: 96px; resize: vertical; }
+    .topic-grid { display: grid; gap: 8px; }
+    .topic-grid label {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 8px;
+      align-items: start;
+      border: 1px solid var(--cp-border);
+      border-radius: 0.625rem;
+      padding: 10px;
+      background: var(--cp-surface);
+    }
+    pre {
+      white-space: pre-wrap;
+      background: var(--cp-surface-soft);
+      border: 1px solid var(--cp-border);
+      border-radius: 0.625rem;
+      padding: 14px;
+      color: var(--cp-text);
+      font-family: Consolas, "Courier New", Courier, monospace;
+      font-size: 13px;
+    }
+    .muted { color: var(--cp-text-muted); }
+    .small { font-size: 13px; }
+    .pill-warning { color: var(--cp-warning); }
+    .pill-success { color: var(--cp-success); }
+
+    @media (max-width: 900px) {
+      .hero, .grid.two, .grid.three, .feature.highlight, .field-grid { grid-template-columns: 1fr; }
+      .facts { grid-template-columns: 1fr; }
+      .tag { display: none; }
+      .help-row { align-items: stretch; flex-direction: column; }
+      .time-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="#start" aria-label="Back to start">
+        <span class="brand-mark">PP</span>
+        <span>PPCC 2026 <small>Know Before You Go</small></span>
+      </a>
+      <p class="tag"><b>Manufacturing edition</b><br>Low-code, agents, operations and frontline transformation</p>
+    </div>
+    <nav class="wrap tabs" aria-label="Guide sections" id="tabs"></nav>
+  </header>
+
+  <main id="main">
+    <section id="panel-start" class="panel active" tabindex="-1">
+      <div class="wrap hero">
+        <div class="hero-card">
+          <p class="eyebrow">Manufacturing edition</p>
+          <h1>Know <em>Before</em> You Go</h1>
+          <p class="lede">A field-ready PPCC guide for manufacturing leaders, makers, IT teams and operations stakeholders headed to Las Vegas.</p>
+          <div class="facts" aria-label="Conference facts">
+            <div class="fact"><span>When</span><b>Oct 27-29, 2026</b></div>
+            <div class="fact"><span>Where</span><b>MGM Grand, Las Vegas</b></div>
+            <div class="fact"><span>Focus</span><b>Apps, agents and automation for operations</b></div>
+          </div>
+          <div class="cta-row">
+            <a class="btn primary" href="#before">Start checklist</a>
+            <a class="btn" href="#days">View 3-day plan</a>
+            <button class="btn" type="button" data-open-meet>Draft PG meeting request</button>
+          </div>
+          <div class="do-soon">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Do these soon</p>
+                <h2>Manufacturing attendee prep</h2>
+              </div>
+            </div>
+            <div class="grid three">
+              <article class="card due-item">
+                <div class="date-tile"><small>Oct</small>15</div>
+                <div><h3>Finalize workshops</h3><p class="small muted">Pick hands-on labs for Copilot Studio, Power Apps, governance and process mining.</p></div>
+              </article>
+              <article class="card due-item">
+                <div class="date-tile"><small>Mid</small>Oct</div>
+                <div><h3>Build a Whova agenda</h3><p class="small muted">Double-book popular sessions and keep backups for smaller rooms.</p></div>
+              </article>
+              <article class="card due-item">
+                <div class="date-tile"><small>Now</small>PG</div>
+                <div><h3>Request product group time</h3><p class="small muted">Bring plant-floor, ERP/MES, governance and agent-scale questions early.</p></div>
+              </article>
+            </div>
+          </div>
+        </div>
+        <aside class="card video-card">
+          <div class="video-box">
+            <div>
+              <div class="play" aria-hidden="true">▶</div>
+              <h2>Use the official Know Before You Go session</h2>
+              <p class="muted">The original guide anchors on a 41-minute Power HUG video. Replace this card with your manufacturing-specific intro recording if you produce one.</p>
+              <p><a class="btn primary" href="https://www.youtube.com/watch?v=VpZvCUSRKrs" target="_blank" rel="noopener noreferrer">Open reference video</a></p>
+            </div>
+          </div>
+          <div class="chapters" aria-label="Suggested manufacturing jump points">
+            <div class="chapter"><time>0:00</time><div><b>Start with logistics</b><br><span class="muted">Registration, venue, Whova and badge pickup.</span></div></div>
+            <div class="chapter"><time>8:00</time><div><b>Prioritize sessions</b><br><span class="muted">Choose roadmap, governance and maker sessions first.</span></div></div>
+            <div class="chapter"><time>18:00</time><div><b>Plan industry conversations</b><br><span class="muted">Set up time for manufacturing scenarios and executive meetings.</span></div></div>
+            <div class="chapter"><time>27:00</time><div><b>Final attendee tips</b><br><span class="muted">Shoes, layers, chargers and backup agenda.</span></div></div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="wrap">
+        <article class="feature highlight">
+          <div>
+            <p class="eyebrow">Manufacturing anchor session</p>
+            <h2>Agents and low-code for the connected factory</h2>
+            <p class="lede">Use PPCC to pressure-test where Power Platform can remove operational friction: quality escapes, line-changeover work, EHS reporting, maintenance handoffs, supplier exceptions and frontline knowledge capture.</p>
+            <div class="chip-row">
+              <span class="chip">Plant operations</span>
+              <span class="chip">Quality</span>
+              <span class="chip">Field service</span>
+              <span class="chip">Supply chain</span>
+              <span class="chip">IT governance</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Suggested ask</h3>
+            <p>Before you leave, secure one concrete next step: a pilot pattern, architecture review, ALM plan, Center of Excellence checkpoint, or product-group follow-up for your highest-value manufacturing workflow.</p>
+            <button class="btn primary" type="button" data-open-meet>Draft the ask</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="panel-before" class="panel" tabindex="-1">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Before you go</p>
+            <h2 class="page-title">Your pre-trip checklist</h2>
+            <p class="lede">Check items off as you complete them. This is a starter version; confirm official dates and links before sharing externally.</p>
+          </div>
+        </div>
+        <div class="progress" aria-label="Checklist progress"><i id="progress-bar"></i></div>
+        <p class="small muted" id="progress-text"></p>
+        <div class="checklist" id="checklist"></div>
+      </div>
+    </section>
+
+    <section id="panel-ground" class="panel" tabindex="-1">
+      <div class="wrap">
+        <p class="eyebrow">On the ground</p>
+        <h2 class="page-title">Navigate MGM Grand with a manufacturing agenda</h2>
+        <p class="lede">The reference site emphasizes the basics: get your badge early, leave more time than you think, and know where the keynote arena is before Tuesday morning.</p>
+        <div class="grid two">
+          <article class="card">
+            <h3>Keynote morning route</h3>
+            <div class="timeline">
+              <div class="time-row"><time>6:30 AM</time><div><b>Check-in opens</b><br><span class="muted">Pick up your badge on the first floor of the MGM Grand Conference Center.</span></div></div>
+              <div class="time-row"><time>8:00 AM</time><div><b>Arena doors open</b><br><span class="muted">Walk toward The District and the Grand Garden Arena early.</span></div></div>
+              <div class="time-row"><time>8:30 AM</time><div><b>Opening keynote</b><br><span class="muted">Capture product announcements and map them to your manufacturing use cases.</span></div></div>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Manufacturing field tips</h3>
+            <ul>
+              <li><b>Bring scenario notes.</b> Write one-paragraph briefs for your top plant, quality, maintenance or supply-chain workflows.</li>
+              <li><b>Travel light.</b> Expect long walks and smaller rooms for popular sessions.</li>
+              <li><b>Book backups.</b> Have a second choice ready for each roadmap or Copilot Studio session.</li>
+              <li><b>Find peers.</b> Ask in Whova for manufacturing, automotive, industrial equipment and mobility attendees.</li>
+            </ul>
+          </article>
+        </div>
+        <div class="grid three" style="margin-top:16px">
+          <article class="card"><h3>Meals</h3><p>Lunch is typically included during conference days. Confirm dietary requests with the organizers and verify your lunch location at check-in.</p></article>
+          <article class="card"><h3>What to bring</h3><p>Comfortable shoes, layers, a power bank, business cards or LinkedIn QR, and a shortlist of manufacturing questions.</p></article>
+          <article class="card"><h3>Who to meet</h3><p>Product managers, Microsoft engineers, partner solution builders, other manufacturing customers and Power Platform CoE leaders.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="panel-evenings" class="panel" tabindex="-1">
+      <div class="wrap">
+        <p class="eyebrow">Evening events</p>
+        <h2 class="page-title">Build a manufacturing networking plan</h2>
+        <p class="lede">The original guide curates healthcare and open partner events. This Manufacturing version starts with an event planner you can update as manufacturing-specific receptions are confirmed.</p>
+        <div class="event-controls" id="event-controls" aria-label="Event filters"></div>
+        <div class="grid two" id="events-list"></div>
+      </div>
+    </section>
+
+    <section id="panel-exec" class="panel" tabindex="-1">
+      <div class="wrap">
+        <p class="eyebrow">Executive Experience</p>
+        <h2 class="page-title">For manufacturing executives</h2>
+        <p class="lede">Use executive time to move from curiosity to decisions: where low-code and agents fit, what governance model is required, and how the business measures value.</p>
+        <div class="grid three">
+          <article class="card"><h3>Recommended exec narrative</h3><p>Modernize operations by giving every plant, quality and supply-chain team governed tools to automate work without creating unmanaged shadow IT.</p></article>
+          <article class="card"><h3>Product group topics</h3><p>Copilot Studio scale, Dataverse integration, process mining, managed environments, ALM, licensing and agent governance.</p></article>
+          <article class="card"><h3>Decision to seek</h3><p>Agree on a 90-day pilot tied to a real operational KPI: downtime, scrap, cycle time, first-pass yield, safety reporting or service resolution.</p></article>
+        </div>
+        <article class="feature highlight">
+          <div>
+            <h2>Suggested executive meeting ask</h2>
+            <p>“We want to understand how Microsoft recommends governing plant-level apps and agents across many facilities while integrating safely with ERP, MES, quality and service systems.”</p>
+          </div>
+          <div><button class="btn primary" type="button" data-open-meet>Customize the email</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="panel-days" class="panel" tabindex="-1">
+      <div class="wrap">
+        <p class="eyebrow">Manufacturing game plan</p>
+        <h2 class="page-title">3 Perfect Days at PPCC</h2>
+        <p class="lede">A suggested agenda lens for manufacturing attendees. Replace placeholders with exact Whova sessions once the official agenda is final.</p>
+        <div class="grid three" id="days-grid"></div>
+      </div>
+    </section>
+
+    <section id="panel-faq" class="panel" tabindex="-1">
+      <div class="wrap">
+        <p class="eyebrow">FAQ & links</p>
+        <h2 class="page-title">Quick answers for manufacturing attendees</h2>
+        <input class="search-box" id="faq-search" type="search" placeholder="Search questions">
+        <div class="grid faq" id="faq-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <section class="help-band">
+    <div class="wrap help-row">
+      <div>
+        <h2>Questions before you go?</h2>
+        <p class="muted">Use this starter to align your account team, customer attendees and product-group meeting requests.</p>
+      </div>
+      <button class="btn primary" type="button" data-open-meet>Draft manufacturing PG request</button>
+    </div>
+  </section>
+
+  <footer class="wrap">
+    <p>Manufacturing-focused companion guide inspired by the public PPCC Know Before You Go reference site. Validate official conference details, partner events and agenda entries before customer distribution. Last updated Oct 9, 2026.</p>
+  </footer>
+
+  <dialog id="meet-dialog" aria-labelledby="meet-title">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">Request a meeting</p>
+          <h2 id="meet-title">Draft product group meeting request</h2>
+        </div>
+        <button class="icon-btn" type="button" id="close-meet" aria-label="Close">×</button>
+      </div>
+      <p class="muted">Fill in the blanks and copy the generated note into Outlook or Teams. Nothing is sent from this page.</p>
+      <div class="field-grid">
+        <label><span>Your name</span><input id="m-name" type="text" placeholder="Your name"></label>
+        <label><span>Organization</span><input id="m-org" type="text" placeholder="Customer or company"></label>
+      </div>
+      <label><span>Your role</span><input id="m-role" type="text" placeholder="Operations, IT, manufacturing engineering, quality, etc."></label>
+      <p class="field-title">Topics</p>
+      <div class="topic-grid" id="m-topics"></div>
+      <label><span>Specific question or workflow</span><textarea id="m-details" placeholder="For example: governed agents for maintenance handoffs across 20 plants, or replacing spreadsheet-based quality exception tracking."></textarea></label>
+      <label><span>Desired outcome</span><textarea id="m-outcome" placeholder="For example: recommended pilot architecture, roadmap clarity, or a governance pattern."></textarea></label>
+      <h3>Your email draft</h3>
+      <p class="small muted"><b>To:</b> your Microsoft account team &nbsp; <b>Subject:</b> PPCC 2026: manufacturing product group meeting request</p>
+      <pre id="meet-preview"></pre>
+      <div class="cta-row">
+        <button class="btn primary" type="button" id="copy-draft">Copy draft</button>
+        <span class="small muted" id="copy-status" role="status"></span>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    const DATA = {
+      tabs: [
+        ["start", "Start Here"],
+        ["before", "Before You Go"],
+        ["ground", "On the Ground"],
+        ["evenings", "Evening Events"],
+        ["exec", "Executive"],
+        ["days", "3 Perfect Days"],
+        ["faq", "FAQ & Links"]
+      ],
+      checklist: [
+        ["Confirm registration", "Find your confirmation email and welcome letter. If more people are attending, check group pricing and pass-transfer deadlines on the official PPCC site."],
+        ["Finalize workshops by Oct 15", "Prioritize hands-on sessions for Copilot Studio, Power Apps, governance, Dataverse, ALM, process mining and automation."],
+        ["Install Whova and join the event", "Use Whova to build a schedule, double-book backups, message attendees and coordinate hallway meetings."],
+        ["Write your manufacturing scenarios", "Bring 3-5 real workflows: quality exception, EHS incident, maintenance handoff, field-service escalation, supplier delay, line changeover or knowledge capture."],
+        ["Ask for product group time", "Route questions through your Microsoft account team early. Availability is limited and easier to secure before onsite schedules fill."],
+        ["Identify executive outcomes", "Decide what business metric you want to improve: downtime, scrap, cycle time, first-pass yield, working capital, safety or service resolution."],
+        ["Pack for long days", "Comfortable shoes, layers, a charger, small notebook and a concise problem statement for each conversation."]
+      ],
+      events: [
+        ["official", "Tuesday", "Night Market Opening Reception", "Official PPCC", "Included with badge", "Start with the official reception to meet makers, partners and Microsoft teams. Use it to find manufacturing peers and active CoE leaders."],
+        ["open", "Tuesday", "Partner happy hours", "Open / partner hosted", "Registration varies", "Watch for events from systems integrators and Power Platform partners with manufacturing, ERP, field service or industrial IoT practices."],
+        ["manufacturing", "Wednesday", "Manufacturing peer meetup", "To be confirmed", "Ask account team", "Placeholder for a manufacturing-focused meetup. Use this slot for customers in automotive, industrial equipment, chemicals, aerospace, mobility and discrete manufacturing."],
+        ["exec", "Tue-Thu", "Executive product group meetings", "Microsoft", "Request required", "Use these for governance, roadmap, security and architecture discussions tied to operational use cases."],
+        ["official", "Wednesday", "Conference concert", "Official PPCC", "Included with badge", "Keep travel time and dinner plans realistic; lines and venue movement take longer than expected."]
+      ],
+      days: [
+        ["Day 1: Learn", "Tuesday, Oct 27", "Keynote, Power Platform roadmap, Copilot Studio direction and governance fundamentals.", ["Opening keynote", "What is new across Power Platform", "Governed maker strategy", "Evening partner networking"]],
+        ["Day 2: Build", "Wednesday, Oct 28", "Go deep on agents, app modernization and manufacturing process examples.", ["Copilot Studio and agents", "Power Apps for frontline workflows", "Process mining and automation", "Manufacturing peer meetup placeholder"]],
+        ["Day 3: Operationalize", "Thursday, Oct 29", "Convert inspiration into a practical pilot and operating model.", ["CoE and managed environments", "Dataverse and integration patterns", "Executive decision session", "90-day pilot plan"]]
+      ],
+      faqs: [
+        ["Is this the official PPCC site?", "No. It is a companion starter modeled after the public Know Before You Go reference. Confirm all official dates, links, session rooms and partner events on the official PPCC site and Whova."],
+        ["What makes this Manufacturing-focused?", "The agenda lens, meeting request topics, executive narrative and examples are tailored to plant operations, quality, maintenance, field service, supply chain, ERP/MES integration and governed maker scale."],
+        ["Which sessions should manufacturing teams prioritize?", "Start with roadmap and governance sessions, then Copilot Studio, Power Apps, process mining, Dataverse, ALM, security, automation and any industry sessions that touch frontline or operational workflows."],
+        ["What should I ask Microsoft product group?", "Ask about scaling agents safely across plants, integrating with ERP/MES/quality systems, managing environments, ALM, licensing, agent governance and recommended pilot patterns."],
+        ["What should executives take away?", "A crisp 90-day pilot tied to an operational KPI, an owner for governance, and an agreed path from pilot to reusable factory or business-unit pattern."],
+        ["Can I share this with customers?", "Yes after validating official event details and replacing placeholders. If you need OneDrive or SharePoint browser-preview safety, rebuild with stricter sandbox rules."]
+      ],
+      topics: [
+        "Governed low-code apps across plants and business units",
+        "Copilot Studio agents for frontline and operations workflows",
+        "Integrating with ERP, MES, QMS, PLM or field service systems",
+        "Quality exceptions, EHS reporting and maintenance handoffs",
+        "Process mining for manufacturing and supply-chain bottlenecks",
+        "ALM, managed environments and Center of Excellence patterns",
+        "Licensing and cost management as usage scales",
+        "Roadmap for agents, Dataverse and Power Platform governance"
+      ]
+    };
+
+    const $ = (sel, root = document) => root.querySelector(sel);
+    const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+    function el(tag, attrs = {}, ...children) {
+      const node = document.createElement(tag);
+      Object.entries(attrs).forEach(([key, value]) => {
+        if (key === "class") node.className = value;
+        else if (key === "text") node.textContent = value;
+        else if (key.startsWith("on")) node.addEventListener(key.slice(2), value);
+        else node.setAttribute(key, value);
+      });
+      children.flat().forEach(child => node.append(child.nodeType ? child : document.createTextNode(child)));
+      return node;
+    }
+
+    function activate(tab) {
+      if (!DATA.tabs.some(([id]) => id === tab)) tab = "start";
+      $$(".panel").forEach(panel => panel.classList.toggle("active", panel.id === `panel-${tab}`));
+      $$(".tab").forEach(button => button.setAttribute("aria-selected", String(button.dataset.tab === tab)));
+      $(`#panel-${tab}`).focus({ preventScroll: true });
+    }
+
+    function buildTabs() {
+      const tabs = $("#tabs");
+      DATA.tabs.forEach(([id, label]) => {
+        tabs.append(el("button", {
+          class: "tab",
+          type: "button",
+          role: "tab",
+          "aria-selected": id === "start" ? "true" : "false",
+          "data-tab": id,
+          onclick: () => { location.hash = id; activate(id); }
+        }, label));
+      });
+      window.addEventListener("hashchange", () => activate(location.hash.replace("#", "")));
+      activate(location.hash.replace("#", "") || "start");
+    }
+
+    function buildChecklist() {
+      const list = $("#checklist");
+      DATA.checklist.forEach(([title, detail], index) => {
+        const checkbox = el("input", { type: "checkbox", id: `check-${index}` });
+        const row = el("article", { class: "check-row" }, checkbox, el("div", {}, el("h3", {}, title), el("p", { class: "muted" }, detail)));
+        checkbox.addEventListener("change", () => {
+          row.classList.toggle("done", checkbox.checked);
+          updateProgress();
+        });
+        list.append(row);
+      });
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const boxes = $$("#checklist input");
+      const done = boxes.filter(box => box.checked).length;
+      const pct = boxes.length ? Math.round((done / boxes.length) * 100) : 0;
+      $("#progress-bar").style.width = `${pct}%`;
+      $("#progress-text").textContent = `${done} of ${boxes.length} complete`;
+    }
+
+    function buildEvents() {
+      const controls = $("#event-controls");
+      const filters = [["all", "All"], ["manufacturing", "Manufacturing"], ["exec", "Executive"], ["official", "Official"], ["open", "Open"]];
+      filters.forEach(([id, label]) => controls.append(el("button", { class: "btn filter-btn" + (id === "all" ? " active" : ""), type: "button", "data-filter": id }, label)));
+      const list = $("#events-list");
+      DATA.events.forEach(([kind, day, title, host, access, summary]) => {
+        list.append(el("article", { class: "card event-card show", "data-kind": kind },
+          el("p", { class: "eyebrow" }, day),
+          el("h3", {}, title),
+          el("div", { class: "chip-row" }, el("span", { class: "chip" }, host), el("span", { class: "chip" }, access)),
+          el("p", { class: "muted" }, summary)
+        ));
+      });
+      controls.addEventListener("click", event => {
+        const button = event.target.closest("button");
+        if (!button) return;
+        $$(".filter-btn").forEach(btn => btn.classList.toggle("active", btn === button));
+        const filter = button.dataset.filter;
+        $$(".event-card").forEach(card => card.classList.toggle("show", filter === "all" || card.dataset.kind === filter));
+      });
+    }
+
+    function buildDays() {
+      const grid = $("#days-grid");
+      DATA.days.forEach(([title, date, line, items]) => {
+        grid.append(el("article", { class: "card" },
+          el("p", { class: "eyebrow" }, date),
+          el("h3", {}, title),
+          el("p", { class: "muted" }, line),
+          el("ul", {}, items.map(item => el("li", {}, item)))
+        ));
+      });
+    }
+
+    function buildFaq() {
+      const list = $("#faq-list");
+      DATA.faqs.forEach(([question, answer]) => {
+        list.append(el("details", { "data-q": `${question} ${answer}`.toLowerCase() },
+          el("summary", {}, question),
+          el("p", { class: "muted" }, answer)
+        ));
+      });
+      $("#faq-search").addEventListener("input", event => {
+        const q = event.target.value.trim().toLowerCase();
+        $$("details", list).forEach(item => item.style.display = item.dataset.q.includes(q) ? "" : "none");
+      });
+    }
+
+    function buildMeetDialog() {
+      const dialog = $("#meet-dialog");
+      const topics = $("#m-topics");
+      DATA.topics.forEach(topic => topics.append(el("label", {}, el("input", { type: "checkbox", value: topic }), topic)));
+      const inputs = ["#m-name", "#m-org", "#m-role", "#m-details", "#m-outcome"];
+      inputs.forEach(selector => $(selector).addEventListener("input", updateDraft));
+      topics.addEventListener("change", updateDraft);
+      $$("[data-open-meet]").forEach(button => button.addEventListener("click", () => { dialog.showModal(); updateDraft(); }));
+      $("#close-meet").addEventListener("click", () => dialog.close());
+      $("#copy-draft").addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText($("#meet-preview").textContent);
+          $("#copy-status").textContent = "Copied.";
+        } catch {
+          $("#copy-status").textContent = "Copy blocked. Select the text above.";
+        }
+      });
+      updateDraft();
+    }
+
+    function updateDraft() {
+      const name = $("#m-name").value || "[Name]";
+      const org = $("#m-org").value || "[Organization]";
+      const role = $("#m-role").value || "[Role]";
+      const details = $("#m-details").value || "[Specific workflow or question]";
+      const outcome = $("#m-outcome").value || "[Desired outcome]";
+      const selected = $$("#m-topics input:checked").map(box => `- ${box.value}`).join("\n") || "- [Select topics]";
+      $("#meet-preview").textContent =
+`Hi team,
+
+I will be at PPCC 2026 and would like to request time with the Microsoft product group for a manufacturing-focused discussion.
+
+Attendee: ${name}
+Organization: ${org}
+Role: ${role}
+
+Topics:
+${selected}
+
+Specific workflow or question:
+${details}
+
+What would make the meeting worthwhile:
+${outcome}
+
+If availability is limited, I am also open to joining a small-group discussion with other manufacturing customers focused on Power Platform, Copilot Studio, agents, governance and operational transformation.
+
+Thank you.`;
+    }
+
+    buildTabs();
+    buildChecklist();
+    buildEvents();
+    buildDays();
+    buildFaq();
+    buildMeetDialog();
+  </script>
+</body>
+</html>
